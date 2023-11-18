@@ -7,13 +7,13 @@ import { primary } from "../../common/theme/Colors";
 import ProfileFilterBar from "../../common/components/ProfileFilterBar";
 import MessagesList from "../../common/components/message/MessagesList";
 import PostMessageTypeSelector from "../../common/components/message/PostMessageTypeSelector";
-import { useAws } from "../../common/hooks/AwsHooks";
+import { useSui } from "../../common/hooks/SuiHooks";
 import log from "../../../domain/utils/logger";
 
 type Props = BottomTabScreenProps<RootStackParamList, "Home">;
 
 export default function Home({ navigation }: Props) {
-  const aws = useAws();
+  const aws = useSui();
   useEffect(() => {
     const messages = aws.getFeed("", 10);
     log("messages", messages);
