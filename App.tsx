@@ -14,12 +14,6 @@ import NavHeader from "./src/presentation/common/components/NavHeader";
 import Browse from "./src/presentation/screens/browse/Browse";
 import Notification from "./src/presentation/screens/notification/Notification";
 import Dm from "./src/presentation/screens/dm/Dm";
-import { SuiClientProvider, WalletProvider } from "@mysten/dapp-kit";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { networkConfig } from "./src/domain/repository/sui/connector";
-
-const queryClient = new QueryClient();
 
 export type RootStackParamList = {
   Home: undefined;
@@ -32,65 +26,58 @@ const App = () => {
   const Tab = createBottomTabNavigator<RootStackParamList>();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <SuiClientProvider networks={networkConfig} defaultNetwork="testnet">
-        <WalletProvider>
-          <SafeAreaView>
-            <NavigationContainer>
-              <Tab.Navigator
-                screenOptions={({ route }) => ({
-                  tabBarIcon: ({ focused }) =>
-                    getImageIcon(route.name, focused),
-                  tabBarActiveTintColor: tertiary(),
-                  tabBarInactiveTintColor: secondary(),
-                })}
-              >
-                <Tab.Screen
-                  name="Home"
-                  component={Home}
-                  options={{
-                    headerTitle: (props) => <NavHeader />,
-                    headerLeft: () => null,
-                    headerStyle: styles.headerStyle,
-                    tabBarShowLabel: false,
-                  }}
-                />
-                <Tab.Screen
-                  name="Browse"
-                  component={Browse}
-                  options={{
-                    headerTitle: (props) => <NavHeader />,
-                    headerLeft: () => null,
-                    headerStyle: styles.headerStyle,
-                    tabBarShowLabel: false,
-                  }}
-                />
-                <Tab.Screen
-                  name="Notification"
-                  component={Notification}
-                  options={{
-                    headerTitle: (props) => <NavHeader />,
-                    headerLeft: () => null,
-                    headerStyle: styles.headerStyle,
-                    tabBarShowLabel: false,
-                  }}
-                />
-                <Tab.Screen
-                  name="Dm"
-                  component={Dm}
-                  options={{
-                    headerTitle: (props) => <NavHeader />,
-                    headerLeft: () => null,
-                    headerStyle: styles.headerStyle,
-                    tabBarShowLabel: false,
-                  }}
-                />
-              </Tab.Navigator>
-            </NavigationContainer>
-          </SafeAreaView>
-        </WalletProvider>
-      </SuiClientProvider>
-    </QueryClientProvider>
+    <SafeAreaView>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused }) => getImageIcon(route.name, focused),
+            tabBarActiveTintColor: tertiary(),
+            tabBarInactiveTintColor: secondary(),
+          })}
+        >
+          <Tab.Screen
+            name="Home"
+            component={Home}
+            options={{
+              headerTitle: (props) => <NavHeader />,
+              headerLeft: () => null,
+              headerStyle: styles.headerStyle,
+              tabBarShowLabel: false,
+            }}
+          />
+          <Tab.Screen
+            name="Browse"
+            component={Browse}
+            options={{
+              headerTitle: (props) => <NavHeader />,
+              headerLeft: () => null,
+              headerStyle: styles.headerStyle,
+              tabBarShowLabel: false,
+            }}
+          />
+          <Tab.Screen
+            name="Notification"
+            component={Notification}
+            options={{
+              headerTitle: (props) => <NavHeader />,
+              headerLeft: () => null,
+              headerStyle: styles.headerStyle,
+              tabBarShowLabel: false,
+            }}
+          />
+          <Tab.Screen
+            name="Dm"
+            component={Dm}
+            options={{
+              headerTitle: (props) => <NavHeader />,
+              headerLeft: () => null,
+              headerStyle: styles.headerStyle,
+              tabBarShowLabel: false,
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 };
 

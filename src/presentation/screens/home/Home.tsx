@@ -7,22 +7,21 @@ import { primary } from "../../common/theme/Colors";
 import ProfileFilterBar from "../../common/components/ProfileFilterBar";
 import MessagesList from "../../common/components/message/MessagesList";
 import PostMessageTypeSelector from "../../common/components/message/PostMessageTypeSelector";
-import { useSui } from "../../common/hooks/SuiHooks";
 import log from "../../../domain/utils/logger";
 
 type Props = BottomTabScreenProps<RootStackParamList, "Home">;
 
 export default function Home({ navigation }: Props) {
-  const aws = useSui();
+  //const aws = useSui();
   useEffect(() => {
-    const messages = aws.getFeed("", 10);
-    log("messages", messages);
+    // const messages = aws.getFeed("", 10);
+    // log("messages", messages);
   }, []);
 
   return (
     <View style={{ ...(styleRootContainer as object) }}>
       <ProfileFilterBar data={[]} />
-      <MessagesList messages={aws.getFeed("", 10)} />
+      {/* <MessagesList messages={aws.getFeed("", 10)} /> */}
       <PostMessageTypeSelector style={styles.postMsg} />
     </View>
   );

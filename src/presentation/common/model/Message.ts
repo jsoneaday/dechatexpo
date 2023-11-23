@@ -1,20 +1,16 @@
-import {
-  FormattedDate,
-  TransactionId,
-} from "../../../domain/arweave/model/ModelTypes";
 import { ProfileMini } from "./Profile";
 
 // if standard, like, dislike, resent represents base message at root of UI
 // if response, it is the child of base message
 export class Message {
   constructor(
-    id: TransactionId,
+    id: string,
     profile: ProfileMini,
     likeCount: number,
     dislikeCount: number,
     resentCount: number,
     responseCount: number,
-    timestamp: FormattedDate,
+    timestamp: string,
     type: TypeOfPost,
     respondingToPost: Message | undefined,
     postToResend: Message | undefined,
